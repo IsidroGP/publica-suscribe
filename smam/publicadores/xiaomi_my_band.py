@@ -177,9 +177,9 @@ class XiaomiMyBand:
         time.sleep(1)
         
         message = {}
-        message['medicine'] = self.simulate_medicine
-        message['quantity'] = self.simultate_milligrams
-        message['hour'] = self.simulate_hour
+        message['medicine'] = self.simulate_medicine()
+        message['quantity'] = self.simultate_milligrams()
+        message['hour'] = self.simulate_hour()
         message['id'] = str(self.id)
         message['datetime'] = self.simulate_datetime()
         message['producer'] = self.producer
