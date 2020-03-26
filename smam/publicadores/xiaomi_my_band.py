@@ -195,7 +195,28 @@ class XiaomiMyBand:
 
     def simulate_datetime(self):
         return time.strftime("%d:%m:%Y:%H:%M:%S")
+    
+    def simulate_medicine(self):
+        num_medic = random.randint(1, 5)
+        medicine = " "
+        if (num_medic == 1):
+            medicine = "Paracetamol"
+        if (num_medic == 2):
+            medicine = "Insulina"
+        if (num_medic == 3):
+            medicine = "Ibuprofeno"
+        if (num_medic == 4):
+            medicine = "Senosidos AB"
+        if (num_medic == 5):
+            medicine = "Naproxeno"
+        return medicine
 
+    def simultate_milligrams(self):
+        return random.uniform(10, 500)
+    
+    def simulate_hour(self):
+        return time.strftime("%H:%M")
+    
     def simulate_x_position(self):
         return random.uniform(-1, 1)
 
@@ -228,25 +249,3 @@ class XiaomiMyBand:
 
     def simulate_blood_preasure(self):
         return random.randint(100, 200)
-
-    def simulate_medicine(self):
-        num_medic = random.randint(1, 5)
-        medicine = " "
-
-        if (num_medic == 1):
-            medicine = "Paracetamol"
-        if (num_medic == 2):
-            medicine = "Insulina"
-        if (num_medic == 3):
-            medicine = "Ibuprofeno"
-        if (num_medic == 4):
-            medicine = "Senosidos AB"
-        if (num_medic == 5):
-            medicine = "Naproxeno"
-        return medicine
-
-    def simultate_milligrams(self):
-        return random.uniform(10, 500)
-    
-    def simulate_hour(self):
-        return time.strftime("%H:%M")
