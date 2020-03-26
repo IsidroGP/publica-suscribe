@@ -26,7 +26,6 @@ class ProcesadorTiempoMedicamento:
             sys.exit("Programa terminado...")
 
     def callback(self, ch, method, properties, body):
-        print("hola")
         json_message = self.string_to_json(body)
 
         hour = str(body)[21] + str(body)[22] + str(body)[23] + str(body)[24] + str(body)[25]
