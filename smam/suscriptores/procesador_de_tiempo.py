@@ -15,9 +15,9 @@ class ProcesadorTiempo:
             channel = connection.channel()
             # Se declara una cola para leer los mensajes enviados por el
             # Publicador
-            channel.queue_declare(queue='time', durable=True)
+            channel.queue_declare(queue='medicine', durable=True)
             channel.basic_qos(prefetch_count=1)
-            channel.basic_consume(on_message_callback=self.callback, queue='time')
+            channel.basic_consume(on_message_callback=self.callback, queue='medicine')
             channel.start_consuming()  # Se realiza la suscripción en el Distribuidor de Mensajes
         except (KeyboardInterrupt, SystemExit):
             channel.close()  # Se cierra la conexión
