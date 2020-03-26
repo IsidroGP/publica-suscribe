@@ -135,7 +135,8 @@ class XiaomiMyBand:
         connection.close()  # Se cierra la conexión
 
         time.sleep(1)
-
+        
+        message = {}
         message['blood_preasure'] = self.simulate_blood_preasure()
         message['id'] = str(self.id)
         message['datetime'] = self.simulate_datetime()
@@ -153,7 +154,8 @@ class XiaomiMyBand:
         connection.close()  # Se cierra la conexión
 
         time.sleep(1)
-
+        
+        message = {}
         message['position_x'] = self.simulate_x_position()
         message['position_y'] = self.simulate_y_position()
         message['position_z'] = self.simulate_z_position()
@@ -173,7 +175,8 @@ class XiaomiMyBand:
         connection.close()  # Se cierra la conexión
 
         time.sleep(1)
-
+        
+        message = {}
         message['medicine'] = self.simulate_medicine
         message['quantity'] = self.simultate_milligrams
         message['hour'] = self.simulate_hour
