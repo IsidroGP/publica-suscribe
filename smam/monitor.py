@@ -62,6 +62,14 @@ class Monitor:
         print("")
         print("")
 
+    def print_notification3(self, datetime, id, value, name_param, model):
+        print("  ---------------------------------------------------")
+        print("    ADVERTENCIA")
+        print("  ---------------------------------------------------")
+        print("    Se tiene dar el medicamento " + str(name_param) + " (" + str(value) + "mg)" + " a las " + str(self.format_datetime(datetime)) + " al adulto mayor que utiliza el dispositivo " + str(model) + ":" + str(id))
+        print("")
+        print("")
+
     def format_datetime(self, datetime):
         values_datetime = datetime.split(':')
         f_datetime = values_datetime[3] + ":" + values_datetime[4] + " del " + \
