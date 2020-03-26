@@ -243,8 +243,10 @@ class XiaomiMyBand:
             medicine = "Senosidos AB"
         if (num_medic == 5):
             medicine = "Naproxeno"
-
         return medicine
 
     def simultate_milligrams(self):
         return random.uniform(10, 500)
+    
+    def simulate_hour(self):
+        return time.strftime("%H:%M")
