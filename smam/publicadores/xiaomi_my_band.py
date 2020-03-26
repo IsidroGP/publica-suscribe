@@ -227,7 +227,7 @@ class XiaomiMyBand:
         return random.randint(100, 200)
 
     def simulate_medicine(self):
-        num_medic = random.randit(1, 5)
+        num_medic = random.randint(1, 5)
         medicine = " "
 
         if (num_medic == 1):
