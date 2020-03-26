@@ -29,8 +29,11 @@ class ProcesadorTiempo:
         json_message = self.string_to_json(body)
         if int(json_message['time']) > 110:
             monitor = Monitor()
-            monitor.print_notification(json_message['datetime'], json_message['id'], json_message[
-                                       'blood_preasure'], 'presión arterial', json_message['model'])
+            monitor.print_notification(json_message['datetime'],
+                                       json_message['id'],
+                                       json_message['medicine'],
+                                       'la hora del medicamento',
+                                       json_message['model'])
         time.sleep(1)
         ch.basic_ack(delivery_tag=method.delivery_tag)
 
@@ -46,5 +49,5 @@ class ProcesadorTiempo:
         return message
 
 if __name__ == '__main__':
-    p_presion = ProcesadorPresion()
+    p_presion = ProcesadorTiempo()
     p_presion.consume()
