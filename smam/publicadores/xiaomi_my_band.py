@@ -178,7 +178,7 @@ class XiaomiMyBand:
         
         message = {}
         message['medicine'] = self.simulate_medicine()
-        message['quantity'] = self.simultate_milligrams()
+        message['quantity'] = self.simultate_tablet()
         message['hour'] = self.simulate_hour()
         message['id'] = str(self.id)
         message['datetime'] = self.simulate_datetime()
@@ -214,8 +214,8 @@ class XiaomiMyBand:
             medicine = "Naproxeno"
         return medicine
 
-    def simultate_milligrams(self):
-        return random.uniform(10, 500)
+    def simultate_tablet(self):
+        return random.uniform(1, 2)
     
     def simulate_hour(self):
         return time.strftime("%H:%M")
