@@ -26,13 +26,14 @@ class ProcesadorTiempoMedicamento:
             sys.exit("Programa terminado...")
 
     def callback(self, ch, method, properties, body):
-
+        print("hola")
         json_message = self.string_to_json(body)
 
-        hour = str(body)[21] + str(body)[22] + str(body)[23] + str(body)[24] + + str(body)[25]
+        hour = str(body)[21] + str(body)[22] + str(body)[23] + str(body)[24] + str(body)[25]
         print(hour)
 
         if (json_message['hour']=="8:00") or (json_message['hour']=="4:00") or (json_message['hour']=="10:00"):
+            print("hola")
             monitor = Monitor()
             monitor.print_notification3(json_message['datetime'], json_message['id'], json_message[
                                        'quantity'], json_message['medicine'], json_message['model'])
