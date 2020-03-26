@@ -28,6 +28,7 @@ class ProcesadorTiempo:
     def callback(self, ch, method, properties, body):
         json_message = self.string_to_json(body)
         if 2>1:
+            print("hola")
             monitor = Monitor()
             monitor.print_notification(json_message['datetime'],
                                        json_message['id'],
