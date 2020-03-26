@@ -30,7 +30,7 @@ class ProcesadorTiempoMedicamento:
 
         hour = str(body)[21] + str(body)[22] + str(body)[23] + str(body)[24] + str(body)[25]
         print(hour)
-        print(str(json_message['hour]))
+        print(str(json_message['hour']))
         if (json_message['hour']=="8:00") or (json_message['hour']=="4:00") or (json_message['hour']=="10:00"):
             print("hola")
             monitor = Monitor()
