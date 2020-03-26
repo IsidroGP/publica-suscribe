@@ -1,3 +1,61 @@
+#!/usr/bin/env python
+# -- coding: utf-8 --
+#-------------------------------------------------------------------------
+# Archivo: procesador_de_tiempo_de_medicamento.py
+# Capitulo: 3 Estilo Publica-Subscribe
+# Autor(es): Juan Isidro Gonzalez Parra, Oscar Nájera Santana, Marisol Delgado Villegas,
+# Eduardo Aguilar Yáñez, Francisco Vargas de la Llata
+# Version: 2.0.1 Marzo 2020
+# Descripción:
+#
+#   Esta clase define el rol de un suscriptor, es decir, es un componente que recibe mensajes.
+#
+#   Las características de ésta clase son las siguientes:
+#
+#                                   procesador_de_posicion.py
+#           +-----------------------+-------------------------+------------------------+
+#           |  Nombre del elemento  |     Responsabilidad     |      Propiedades       |
+#           +-----------------------+-------------------------+------------------------+
+#           |                       |                         |  - Se suscribe a los   |
+#           |                       |                         |    eventos generados   |
+#           |                       |  - Procesar valores     |    por el wearable     |
+#           |     Procesador de     |    de hora actual,      |    de los ejes para    |
+#           |                       |    nombre de            |    detectar caidas.    |
+#           |                       |    medicamento y la     |  - Notifica al monitor |
+#           |                       |    dosis de este.       |    cuando se ha        |
+#           |                       |                         |    detectado una caida.|
+#           +-----------------------+-------------------------+------------------------+
+#
+#   A continuación se describen los métodos que se implementaron en ésta clase:
+#
+#                                               Métodos:
+#           +------------------------+--------------------------+-----------------------+
+#           |         Nombre         |        Parámetros        |        Función        |
+#           +------------------------+--------------------------+-----------------------+
+#           |                        |                          |  - Recibe los datos   |
+#           |       consume()        |          Ninguno         |    del medicamento    |
+#           |                        |                          |    desde el distribui-|
+#           |                        |                          |    dor de mensajes.   |
+#           +------------------------+--------------------------+-----------------------+
+#           |                        |  - ch: propio de Rabbit. |  - Procesa y detecta  |
+#           |                        |  - method: propio de     |    valores de la hora |
+#           |       callback()       |  - properties: propio de |    actual.            |
+#           |                        |     Rabbit.              |                       |
+#           |                        |  - body: mensaje recibi- |                       |
+#           |                        |     do.                  |                       |
+#           +------------------------+--------------------------+-----------------------+
+#           |    string_to_json()    |  - string: texto a con-  |  - Convierte un string|
+#           |                        |     vertir en JSON.      |    en un objeto JSON. |
+#           +------------------------+--------------------------+-----------------------+
+#
+#
+#           Nota: "propio de Rabbit" implica que se utilizan de manera interna para realizar
+#            de manera correcta la recepcion de datos, para éste ejemplo no hubo necesidad
+#            de utilizarlos y para evitar la sobrecarga de información se han omitido sus
+#            detalles. Para más información acerca del funcionamiento interno de RabbitMQ
+#            puedes visitar: https://www.rabbitmq.com/
+#
+#-------------------------------------------------------------------------
 import pika
 import sys
 sys.path.append('../')
@@ -32,11 +90,12 @@ class ProcesadorTiempoMedicamento:
         minuteNow = int(json_message['datetime'][14] + json_message['datetime'][15])
         secondNow = int(json_message['datetime'][17] + json_message['datetime'][18])
 
-        #if(hourNow==20) or (hourNow==4) or (hourNow==12):
-        #    if(minuteNow == 0):
-        #        if(secondNow<10):
-        monitor = Monitor()
-        monitor.print_notification3(json_message['datetime'], json_message['id'], json_message[
+        print(hourNow)
+        if(hourNow==9) or (hourNow==7) or (hourNow==15): #Se evalua si es la hora de tomar pastillas (tres veces al dia)
+            if(minuteNow == 0):
+                if(secondNow<10):
+                    monitor = Monitor()
+                    monitor.print_notification_tim(json_message['datetime'], json_message['id'], json_message[
                                        'quantity'], json_message['medicine'], json_message['model'])
         time.sleep(1)
         ch.basic_ack(delivery_tag=method.delivery_tag)

@@ -195,11 +195,11 @@ class XiaomiMyBand:
             delivery_mode=2,))  # Se realiza la publicación del mensaje en el Distribuidor de Mensajes
         connection.close()  # Se cierra la conexión
 
-
+    
     def simulate_datetime(self):
         return time.strftime("%d:%m:%Y:%H:%M:%S")
     
-    def simulate_medicine(self):
+    def simulate_medicine(self): #Este metdo genera un medicamento aleatoriamente.
         num_medic = random.randint(1, 5)
         medicine = " "
         if (num_medic == 1):
@@ -214,10 +214,10 @@ class XiaomiMyBand:
             medicine = "Naproxeno"
         return medicine
 
-    def simultate_tablet(self):
-        return random.uniform(1, 2)
+    def simultate_tablet(self): #Este metodo genera el numero de pastillas 1-2 aleatoriamente.
+        return round(random.uniform(1, 2))
     
-    def simulate_hour(self):
+    def simulate_hour(self): #Este metodo obtiene la hora y los minutos
         return time.strftime("%H:%M")
     
     def simulate_x_position(self):

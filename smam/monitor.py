@@ -54,7 +54,7 @@ class Monitor:
         print("")
         print("")
 
-    def print_notification2(self, datetime, id, value, name_param, model):
+    def print_notification_pos(self, datetime, id, value, name_param, model):
         print("  ---------------------------------------------------")
         print("    ADVERTENCIA")
         print("  ---------------------------------------------------")
@@ -62,11 +62,11 @@ class Monitor:
         print("")
         print("")
 
-    def print_notification3(self, datetime, id, value, name_param, model):
+    def print_notification_tim(self, datetime, id, value, name_param, model):
         print("  ---------------------------------------------------")
         print("    ADVERTENCIA")
         print("  ---------------------------------------------------")
-        print("    Se tiene dar el medicamento " + str(name_param) + " (" + str(value) + "mg)" + " a las " + str(self.format_datetime(datetime)) + " al adulto mayor que utiliza el dispositivo " + str(model) + ":" + str(id))
+        print("    Se tiene dar el medicamento " + str(name_param) + " (" + str(value) + " tabletas)" + " a las " + str(self.format_datetime(datetime)) + " al adulto mayor que utiliza el dispositivo " + str(model) + ":" + str(id))
         print("")
         print("")
 
