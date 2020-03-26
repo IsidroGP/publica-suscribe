@@ -172,6 +172,24 @@ class XiaomiMyBand:
             delivery_mode=2,))  # Se realiza la publicación del mensaje en el Distribuidor de Mensajes
         connection.close()  # Se cierra la conexión
 
+        time.sleep(1)
+
+        message['medicine'] = self.simulate_medicine()
+        message['id'] = str(self.id)
+        message['datetime'] = self.simulate_datetime()
+        message['producer'] = self.producer
+        message['model'] = self.model
+        message['hardware_version'] = self.hardware_version
+        message['software_version'] = self.software_version
+        # Se establece la conexión con el Distribuidor de Mensajes
+        connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
+        # Se solicita un canal por el cuál se enviarán los signos vitales
+        channel = connection.channel()
+        channel.queue_declare(queue='medicine', durable=True)
+        channel.basic_publish(exchange='', routing_key='medicine', body=str(message), properties=pika.BasicProperties(
+            delivery_mode=2, ))  # Se realiza la publicación del mensaje en el Distribuidor de Mensajes
+        connection.close()  # Se cierra la conexión
+
     def simulate_datetime(self):
         return time.strftime("%d:%m:%Y:%H:%M:%S")
 
@@ -207,3 +225,23 @@ class XiaomiMyBand:
 
     def simulate_blood_preasure(self):
         return random.randint(100, 200)
+
+    def simulate_medicine(self):
+        num_medic = random.randit(1, 5)
+        medicine = " "
+
+        if (num_medic == 1):
+            medicine = "Paracetamol"
+        if (num_medic == 2):
+            medicine = "Insulina"
+        if (num_medic == 3):
+            medicine = "Ibuprofeno"
+        if (num_medic == 4):
+            medicine = "Senosidos AB"
+        if (num_medic == 5):
+            medicine = "Naproxeno"
+
+        return medicine
+
+    def simultate_milligrams(self):
+        return random.uniform(10, 500)
