@@ -174,7 +174,9 @@ class XiaomiMyBand:
 
         time.sleep(1)
 
-        message['medicine'] = self.simulate_medicine()
+        message['medicine'] = self.simulate_medicine
+        message['quantity'] = self.simultate_milligrams
+        message['hour'] = self.simulate_hour
         message['id'] = str(self.id)
         message['datetime'] = self.simulate_datetime()
         message['producer'] = self.producer
@@ -185,10 +187,11 @@ class XiaomiMyBand:
         connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
         # Se solicita un canal por el cuál se enviarán los signos vitales
         channel = connection.channel()
-        channel.queue_declare(queue='medicine', durable=True)
-        channel.basic_publish(exchange='', routing_key='medicine', body=str(message), properties=pika.BasicProperties(
-            delivery_mode=2, ))  # Se realiza la publicación del mensaje en el Distribuidor de Mensajes
+        channel.queue_declare(queue='time', durable=True)
+        channel.basic_publish(exchange='', routing_key='time', body=str(message), properties=pika.BasicProperties(
+            delivery_mode=2,))  # Se realiza la publicación del mensaje en el Distribuidor de Mensajes
         connection.close()  # Se cierra la conexión
+
 
     def simulate_datetime(self):
         return time.strftime("%d:%m:%Y:%H:%M:%S")
