@@ -35,8 +35,8 @@ class ProcesadorTiempoMedicamento:
         #if(hourNow==20) or (hourNow==4) or (hourNow==12):
         #    if(minuteNow == 0):
         #        if(secondNow<10):
-                    monitor = Monitor()
-                    monitor.print_notification3(json_message['datetime'], json_message['id'], json_message[
+        monitor = Monitor()
+        monitor.print_notification3(json_message['datetime'], json_message['id'], json_message[
                                        'quantity'], json_message['medicine'], json_message['model'])
         time.sleep(1)
         ch.basic_ack(delivery_tag=method.delivery_tag)
